@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MoneyFlow</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header>
+  <a class="logo" href="{{ url_for('despesas') }}">MoneyFlow</a>
+  <nav>
+    <a href="{{ url_for('despesas') }}">Despesas</a>
+    <a href="{{ url_for('categorias') }}">Categorias</a>
+  </nav>
+</header>
+<main>
+  {% for tipo, msg in get_flashed_messages(with_categories=true) %}
+    <p class="aviso {{ tipo }}">{{ msg }}</p>
+  {% endfor %}
+  {% block conteudo %}{% endblock %}
+</main>
+</body>
+</html>

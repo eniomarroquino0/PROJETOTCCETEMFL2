@@ -1,0 +1,194 @@
+/* ===== Cores e base ===== */
+:root {
+  --azul: #1f3a5f;
+  --verde: #2e9e6b;
+  --verde-escuro: #25835a;
+  --coral: #e4572e;
+  --fundo: #f1f5f4;
+  --branco: #ffffff;
+  --linha: #e3e9e6;
+  --texto: #1c2541;
+  --suave: #5b6578;
+  --sombra: 0 2px 10px rgba(31, 58, 95, 0.08);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--texto);
+  font: 16px/1.6 system-ui, "Segoe UI", sans-serif;
+}
+
+h1 { font: bold 1.6rem Georgia, serif; margin: 0; }
+a { color: var(--azul); }
+
+/* ===== Topo e menu ===== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.9rem 1.4rem;
+  background: var(--azul);
+  box-shadow: var(--sombra);
+}
+.logo {
+  color: #fff;
+  font: bold 1.4rem Georgia, serif;
+  text-decoration: none;
+}
+nav { display: flex; gap: 0.4rem; }
+nav a {
+  color: #dbe5f5;
+  text-decoration: none;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+}
+nav a:hover { background: rgba(255, 255, 255, 0.15); color: #fff; }
+
+main { max-width: 900px; margin: 0 auto; padding: 1.5rem 1.2rem 3rem; }
+
+/* ===== Cartão do total do mês ===== */
+.total {
+  background: linear-gradient(135deg, var(--azul), #2f7a8f);
+  color: #fff;
+  border-radius: 16px;
+  padding: 1.4rem 1.6rem;
+  box-shadow: var(--sombra);
+}
+.total span { display: block; color: #cfe0f0; }
+.total strong { font: bold 2.4rem Georgia, serif; }
+.legenda {
+  list-style: none;
+  padding: 0;
+  margin: 0.8rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.6rem;
+}
+.legenda li {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  padding: 0.15rem 0.8rem;
+  font-size: 0.9rem;
+}
+.legenda b { color: #fff; }
+
+/* ===== Título da página e filtros ===== */
+.topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1.6rem 0 1rem;
+}
+.filtros {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  background: var(--branco);
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  box-shadow: var(--sombra);
+}
+.filtros label { margin: 0; flex: 1; min-width: 150px; }
+.nota { color: var(--suave); font-size: 0.9rem; margin: 0.6rem 0 1rem; }
+
+/* ===== Formulários ===== */
+label { display: block; margin: 0.9rem 0; font-weight: 600; }
+input, select {
+  display: block;
+  width: 100%;
+  margin-top: 0.3rem;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--linha);
+  border-radius: 8px;
+  font: inherit;
+  background: #fff;
+}
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--verde);
+  box-shadow: 0 0 0 3px rgba(46, 158, 107, 0.2);
+}
+.form {
+  max-width: 440px;
+  background: var(--branco);
+  padding: 1.2rem 1.5rem 1.5rem;
+  border-radius: 14px;
+  box-shadow: var(--sombra);
+}
+.form .btn { margin-right: 0.8rem; }
+
+/* ===== Botões ===== */
+.btn {
+  display: inline-block;
+  background: var(--verde);
+  color: #fff !important;
+  border: 0;
+  border-radius: 8px;
+  padding: 0.65rem 1.2rem;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn:hover { background: var(--verde-escuro); }
+a:focus-visible, button:focus-visible { outline: 3px solid #3a86c8; outline-offset: 2px; }
+
+/* ===== Mensagens ===== */
+.aviso { padding: 0.8rem 1rem; border-radius: 10px; margin: 0 0 1rem; }
+.aviso.ok { background: #dff3e8; color: #1d6b46; }
+.aviso.erro { background: #fde3dc; color: #a63a1a; }
+
+/* ===== Tabelas ===== */
+.rolagem {
+  overflow-x: auto;
+  background: var(--branco);
+  border-radius: 14px;
+  box-shadow: var(--sombra);
+}
+table { width: 100%; border-collapse: collapse; }
+th {
+  text-align: left;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--suave);
+  background: #f7faf9;
+}
+th, td { padding: 0.8rem 1rem; border-bottom: 1px solid var(--linha); }
+tr:last-child td { border-bottom: 0; }
+tr:hover td { background: #f7faf9; }
+
+.etiqueta {
+  padding: 0.15rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.etiqueta.sim { background: #dff3e8; color: #1d6b46; }
+.etiqueta.nao { background: #fdeacb; color: #8a5a00; }
+
+.acoes { display: flex; gap: 0.9rem; white-space: nowrap; }
+.acoes form { margin: 0; }
+.link {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--coral);
+  font: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* ===== Celular ===== */
+@media (max-width: 600px) {
+  th, td { padding: 0.6rem; font-size: 0.9rem; }
+  .total strong { font-size: 2rem; }
+}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block conteudo %}
+<h1>{{ titulo }}</h1>
+<form method="post" class="form">
+  <label>Descrição <input name="descricao" maxlength="150" value="{{ d.descricao }}" required></label>
+  <label>Valor (R$) <input name="valor" inputmode="decimal" placeholder="0,00" value="{{ d.valor }}" required></label>
+  <label>Data <input type="date" name="data" value="{{ d.data }}" required></label>
+  <label>Categoria
+    <select name="categoria_id" required>
+      <option value="">Escolha...</option>
+      {% for c in cats %}<option value="{{ c.id }}" {{ 'selected' if c.id|string == d.categoria_id|string }}>{{ c.nome }}</option>{% endfor %}
+    </select></label>
+  <label>É uma despesa essencial?
+    <select name="essencial">
+      <option value="sim" {{ 'selected' if d.essencial == 'sim' }}>Sim, é essencial</option>
+      <option value="nao" {{ 'selected' if d.essencial != 'sim' }}>Não, posso viver sem</option>
+    </select></label>
+  <button class="btn">Salvar</button>
+  <a href="{{ url_for('despesas') }}">Cancelar</a>
+</form>
+{% endblock %}

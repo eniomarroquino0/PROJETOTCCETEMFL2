@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block conteudo %}
+<h1>{{ titulo }}</h1>
+<form method="post" class="form">
+  <label>Nome <input name="nome" maxlength="100" value="{{ d.nome }}" required></label>
+  <label>Descrição (opcional) <input name="descricao" maxlength="255" value="{{ d.descricao or '' }}"></label>
+  <button class="btn">Salvar</button>
+  <a href="{{ url_for('categorias') }}">Cancelar</a>
+</form>
+{% endblock %}

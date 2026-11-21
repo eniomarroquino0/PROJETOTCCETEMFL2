@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block conteudo %}
+<section class="total">
+  <span>Total gasto em {{ mes }}</span>
+  <strong>{{ total | brl }}</strong>
+  {% if por_cat %}
+  <ul class="legenda">
+    {% for nome, valor in por_cat.items() %}<li>{{ nome }} <b>{{ valor | brl }}</b></li>{% endfor %}
+  </ul>
+  {% endif %}
+</section>
+
+<div class="topo">
+  <h1>Despesas</h1>
+  <a class="btn" href="{{ url_for('nova_despesa') }}">Nova despesa</a>
+</div>
+
+<form method="get" class="filtros">
+  <label>Categoria
+    <select name="categoria">
+      <option value="">Todas</option>
+      {% for c in cats %}<option value="{{ c.id }}" {{ 'selected' if c.id|string == categoria }}>{{ c.nome }}</option>{% endfor %}
+    </select></label>
+  <label>Essencial
+    <select name="essencial">
+      <option value="">Todas</option>
+      <option value="sim" {{ 'selected' if essencial == 'sim' }}>Essenciais</option>
+      <option value="nao" {{ 'selected' if essencial == 'nao' }}>Não essenciais</option>
+    </select></label>
+  <button class="btn">Filtrar</button>
+</form>
+<p class="nota">Ordenadas do menor para o maior valor.</p>
+
+{% if itens %}
+<div class="rolagem"><table>
+  <tr><th>Data</th><th>Descrição</th><th>Categoria</th><th>Tipo</th><th>Valor</th><th></th></tr>
+  {% for d in itens %}
+  <tr>
+    <td>{{ d.data.strftime('%d/%m/%Y') }}</td>
+    <td>{{ d.descricao }}</td>
+    <td>{{ d.categoria }}</td>
+    <td><span class="etiqueta {{ d.essencial }}">{{ 'Essencial' if d.essencial == 'sim' else 'Não essencial' }}</span></td>
+    <td>{{ d.valor | brl }}</td>
+    <td class="acoes">
+      <a href="{{ url_for('alterar_despesa', id=d.id) }}">Editar</a>
+      <form method="post" action="{{ url_for('apagar_despesa', id=d.id) }}" onsubmit="return confirm('Excluir esta despesa?')">
+        <button class="link">Excluir</button></form>
+    </td>
+  </tr>
+  {% endfor %}
+</table></div>
+{% else %}
+<p>Nenhuma despesa encontrada. <a href="{{ url_for('nova_despesa') }}">Cadastrar a primeira</a></p>
+{% endif %}
+{% endblock %}
